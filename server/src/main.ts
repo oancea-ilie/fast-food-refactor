@@ -7,7 +7,10 @@ config();
 const server = async () => {
   const port = process.env.SERVER_PORT || 4000;
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+  app.enableCors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(port);
   console.log(`SERVER IS RUNNING ON PORT ${port}!`);

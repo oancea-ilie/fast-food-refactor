@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { config } from 'dotenv';
 import { ProductsModule } from './products/products.module';
 import { Product } from './products/entities/product.entity';
+import { CustomersModule } from './customers/customers.module';
 
 config();
 @Module({
@@ -20,6 +21,7 @@ config();
       synchronize: true,
     }),
     ProductsModule,
+    CustomersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

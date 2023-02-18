@@ -15,19 +15,6 @@ export class ProductsService {
     @InjectRepository(Product) private productsRepository: Repository<Product>
   ) {}
 
-  async create(createProductDto: CreateProductDto) {
-    const { name } = createProductDto;
-    const existingProduct = await this.productsRepository.findOne({
-      where: { name },
-    });
-    if (existingProduct) {
-      throw new ConflictException('Product with this name already exists');
-    }
-
-    const newProduct = this.productsRepository.create(createProductDto);
-    return this.productsRepository.save(newProduct);
-  }
-
   findAll() {
     return this.productsRepository.find();
   }
@@ -40,6 +27,19 @@ export class ProductsService {
       throw new NotFoundException('Product not found');
     }
     return foundedProduct;
+  }
+
+  async create(createProductDto: CreateProductDto) {
+    const { name } = createProductDto;
+    const existingProduct = await this.productsRepository.findOne({
+      where: { name },
+    });
+    if (existingProduct) {
+      throw new ConflictException('Product with this name already exists');
+    }
+
+    const newProduct = this.productsRepository.create(createProductDto);
+    return this.productsRepository.save(newProduct);
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
