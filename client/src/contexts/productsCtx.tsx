@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
+import { createContext, useContext, useMemo, useReducer } from 'react';
 import { ActionType, ProductsContextI } from '../interfaces/ProductCtx';
 import { productsReducer } from '../utils/reducers/productsReducer';
 import { Children } from '../interfaces/SharedInterfaces';
@@ -15,46 +15,42 @@ export const ProductsProvider = ({ children }: Children) => {
   const [products, dispatch] = useReducer(productsReducer, initialState);
 
   const addProduct = async (newProduct: Product) => {
-    const productNameAlreadyExists = products.find((p) => p.name === newProduct.name);
-
-    if (!productNameAlreadyExists) {
-      const createdProduct = await productApi.create(newProduct);
-      if (createdProduct) {
-        dispatch({
-          type: ActionType.ADD_PRODUCT,
-          payload: {
-            product: createdProduct,
-          },
-        });
-      }
-    } else {
-      throw new Error(`Product with name ${newProduct.name} already exists!`);
-    }
-  };
-
-  const removeProduct = (id: number) => {
-    dispatch({ type: ActionType.REMOVE_PRODUCT, payload: { id } });
-  };
-
-  const updateProduct = (id: number, updatedProduct: Product) => {
+    const createdProduct = await productApi.create(newProduct);
     dispatch({
-      type: ActionType.UPDATE_PRODUCT,
+      type: ActionType.ADD_PRODUCT,
       payload: {
-        id,
-        updatedProduct,
+        product: createdProduct,
       },
     });
   };
 
-  const setProducts = async () => {
+  const updateProduct = async (id: number, updatedProduct: Product) => {
+    const serverUpdatedProduct = await productApi.update(id, updatedProduct);
+    dispatch({
+      type: ActionType.UPDATE_PRODUCT,
+      payload: {
+        id,
+        updatedProduct: serverUpdatedProduct,
+      },
+    });
+  };
+
+  const deleteProduct = async (id: number) => {
+    const serverDeletedProduct = await productApi.delete(id);
+    dispatch({
+      type: ActionType.DELETE_PRODUCT,
+      payload: {
+        id: serverDeletedProduct.id,
+      },
+    });
+  };
+
+  const getProducts = async () => {
     const fetchedProducts = await productApi.findAll();
-    console.log(fetchedProducts);
-    if (fetchedProducts) {
-      dispatch({
-        type: ActionType.GET_PRODUCTS,
-        payload: { fetchedProducts },
-      });
-    }
+    dispatch({
+      type: ActionType.GET_PRODUCTS,
+      payload: { fetchedProducts },
+    });
   };
 
   const values = useMemo(
@@ -62,11 +58,12 @@ export const ProductsProvider = ({ children }: Children) => {
       products,
       methods: {
         addProduct,
-        removeProduct,
         updateProduct,
-        setProducts,
+        getProducts,
+        deleteProduct,
       },
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [products]
   );
 
@@ -75,10 +72,8 @@ export const ProductsProvider = ({ children }: Children) => {
 
 export const useProduct = () => {
   const context = useContext(ProductsContext);
-
   if (!context) {
     throw new Error('useProducts must be used within a ProductsProvider');
   }
-
   return context;
 };

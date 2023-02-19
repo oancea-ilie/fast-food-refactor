@@ -8,10 +8,12 @@ export const productsReducer = (products: ServerProduct[], action: Action) => {
       return action.payload.fetchedProducts;
     case ActionType.ADD_PRODUCT:
       return [action.payload.product, ...products];
-    case ActionType.REMOVE_PRODUCT:
-      return products;
     case ActionType.UPDATE_PRODUCT:
-      return products;
+      return products.map((product) =>
+        product.id === action.payload.id ? action.payload.updatedProduct : product
+      );
+    case ActionType.DELETE_PRODUCT:
+      return products.filter((p) => p.id === action.payload.id);
     default:
       return products;
   }

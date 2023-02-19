@@ -12,10 +12,11 @@ const Header = () => {
   };
 
   const removeProduct = () => {
-    // productsCtx.methods.removeProduct(productsCtx.products[0]);
+    productsCtx.methods.deleteProduct(23);
   };
+
   const updateProduct = () => {
-    // productsCtx.methods.updateProduct(productsCtx.products[0], mockedProduct);
+    productsCtx.methods.updateProduct(24, mockedProduct);
   };
 
   return (

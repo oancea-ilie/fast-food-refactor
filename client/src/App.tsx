@@ -8,7 +8,7 @@ const App = () => {
   const productsCtx = useProduct();
 
   useEffect(() => {
-    productsCtx.methods.setProducts();
+    productsCtx.methods.getProducts();
   }, []);
 
   return (

@@ -49,6 +49,15 @@ export class ProductsService {
         'At least one product property must be specified'
       );
     }
+    if (updateProductDto?.name) {
+      const existingProduct = await this.productsRepository.findOne({
+        where: { name: updateProductDto.name },
+      });
+      if (existingProduct) {
+        throw new ConflictException('Product with this name already exists');
+      }
+      return this.productsRepository.update({ id }, { ...updateProductDto });
+    }
     return this.productsRepository.update({ id }, { ...updateProductDto });
   }
 

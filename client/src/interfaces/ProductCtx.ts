@@ -3,16 +3,16 @@ import { Product, ServerProduct } from './Product';
 export enum ActionType {
   GET_PRODUCTS = 'GET_PRODUCTS',
   ADD_PRODUCT = 'ADD_PRODUCT',
-  REMOVE_PRODUCT = 'REMOVE_PRODUCT',
   UPDATE_PRODUCT = 'UPDATE_PRODUCT',
+  DELETE_PRODUCT = 'DELETE_PRODUCT',
 }
 export interface ProductsContextI {
   products: ServerProduct[];
   methods: {
-    setProducts: () => Promise<void>;
+    getProducts: () => Promise<void>;
     addProduct: (newProduct: Product) => Promise<void>;
-    removeProduct: (id: number) => void;
-    updateProduct: (id: number, updatedProduct: Product) => void;
+    updateProduct: (id: number, updatedProduct: Product) => Promise<void>;
+    deleteProduct: (id: number) => Promise<void>;
   };
 }
 
@@ -30,15 +30,15 @@ export type Action =
       };
     }
   | {
-      type: ActionType.REMOVE_PRODUCT;
-      payload: {
-        id: number;
-      };
-    }
-  | {
       type: ActionType.UPDATE_PRODUCT;
       payload: {
         id: number;
-        updatedProduct: Product;
+        updatedProduct: ServerProduct;
+      };
+    }
+  | {
+      type: ActionType.DELETE_PRODUCT;
+      payload: {
+        id: number;
       };
     };
