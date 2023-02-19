@@ -1,45 +1,64 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
 import { isEqual } from 'lodash';
+import { ActionType, Product, ProductsContextI } from '../interfaces/ProductCtx';
+import { productsReducer } from '../utils/reducers/productsReducer';
+import { Children } from '../interfaces/SharedInterfaces';
 
-interface Props {
-  children: JSX.Element | JSX.Element[];
-}
+export const ProductsContext = createContext<ProductsContextI | null>(null);
 
-interface Product {
-  name: string;
-  description: string;
-  price: number;
-}
-
-interface ProductsContext {
-  products: Product[];
-  addProduct: (newProduct: Product) => void;
-}
-
-export const ProductsContext = createContext<ProductsContext | null>(null);
-
-export const ProductsProvider = ({ children }: Props) => {
-  const [products, setProducts] = useState<Product[]>([]);
+export const ProductsProvider = ({ children }: Children) => {
+  const [products, dispatch] = useReducer(productsReducer, []);
 
   const verifyExistingProduct = useCallback(
-    (product: Product) => products.find((p) => isEqual(p, product)),
+    (product: Product) => products.find((stateProduct) => isEqual(stateProduct, product)),
     [products]
   );
 
   const addProduct = useCallback(
     (newProduct: Product) => {
       if (!verifyExistingProduct(newProduct)) {
-        setProducts((prevProducts) => [...prevProducts, newProduct]);
+        dispatch({ type: ActionType.ADD_PRODUCT, payload: newProduct });
       }
     },
     [verifyExistingProduct]
   );
 
-  const values = useMemo(() => ({ products, addProduct }), [addProduct, products]);
+  const removeProduct = useCallback(
+    (product: Product) => {
+      if (verifyExistingProduct(product)) {
+        dispatch({ type: ActionType.REMOVE_PRODUCT, payload: product });
+      }
+    },
+    [verifyExistingProduct]
+  );
+
+  const updateProduct = (oldProduct: Product, newProduct: Product) => {
+    if (!isEqual(oldProduct, newProduct) && oldProduct) {
+      dispatch({ type: ActionType.UPDATE_PRODUCT, payload: { oldProduct, newProduct } });
+    }
+  };
+
+  const values = useMemo(
+    () => ({
+      products,
+      methods: {
+        addProduct,
+        removeProduct,
+        updateProduct,
+      },
+    }),
+    [addProduct, products, removeProduct]
+  );
 
   return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;
 };
 
 export const useProducts = () => {
-  return useContext(ProductsContext);
+  const context = useContext(ProductsContext);
+
+  if (!context) {
+    throw new Error('useProducts must be used within a ProductsProvider');
+  }
+
+  return context;
 };

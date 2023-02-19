@@ -18,9 +18,9 @@ const App = () => {
     setState(await productsApi.find());
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
+  // useEffect(() => {
+  //   getProducts();
+  // }, []);
 
   return (
     <div className="">
