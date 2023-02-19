@@ -1,5 +1,5 @@
 import { ProductsProvider } from './productsCtx';
-import { UserProvider } from './userContext';
+import { UserProvider } from './userCtx';
 
 interface Props {
   children: JSX.Element | JSX.Element[];

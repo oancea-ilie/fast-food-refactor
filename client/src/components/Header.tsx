@@ -1,23 +1,21 @@
 import { memo } from 'react';
-import { useProducts } from '../contexts/productsCtx';
+import { useProduct } from '../contexts/productsCtx';
+
+const mockedProduct = { description: 'des', price: 30, name: 'name', stock: 10 };
 
 const Header = () => {
-  const productsCtx = useProducts();
-  console.log('Products Context', productsCtx);
+  console.log('Header rendered!');
+  const productsCtx = useProduct();
 
   const addProduct = () => {
-    productsCtx.methods.addProduct({ description: 'ceva', price: 30, name: 'name' });
+    productsCtx.methods.addProduct(mockedProduct);
   };
 
   const removeProduct = () => {
-    productsCtx.methods.removeProduct(productsCtx.products[0]);
+    // productsCtx.methods.removeProduct(productsCtx.products[0]);
   };
   const updateProduct = () => {
-    productsCtx.methods.updateProduct(productsCtx.products[0], {
-      name: 'nou name',
-      description: 'nou',
-      price: 50,
-    });
+    // productsCtx.methods.updateProduct(productsCtx.products[0], mockedProduct);
   };
 
   return (

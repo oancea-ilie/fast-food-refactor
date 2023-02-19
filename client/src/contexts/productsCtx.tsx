@@ -1,40 +1,59 @@
 import { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
-import { isEqual } from 'lodash';
-import { ActionType, Product, ProductsContextI } from '../interfaces/ProductCtx';
+import { ActionType, ProductsContextI } from '../interfaces/ProductCtx';
 import { productsReducer } from '../utils/reducers/productsReducer';
 import { Children } from '../interfaces/SharedInterfaces';
+import { Product, ServerProduct } from '../interfaces/Product';
+import { ProductApi } from '../api/productApi';
 
 export const ProductsContext = createContext<ProductsContextI | null>(null);
 
 export const ProductsProvider = ({ children }: Children) => {
-  const [products, dispatch] = useReducer(productsReducer, []);
+  const productApi = new ProductApi();
 
-  const verifyExistingProduct = useCallback(
-    (product: Product) => products.find((stateProduct) => isEqual(stateProduct, product)),
-    [products]
-  );
+  const initialState: ServerProduct[] = [];
 
-  const addProduct = useCallback(
-    (newProduct: Product) => {
-      if (!verifyExistingProduct(newProduct)) {
-        dispatch({ type: ActionType.ADD_PRODUCT, payload: newProduct });
+  const [products, dispatch] = useReducer(productsReducer, initialState);
+
+  const addProduct = async (newProduct: Product) => {
+    const productNameAlreadyExists = products.find((p) => p.name === newProduct.name);
+
+    if (!productNameAlreadyExists) {
+      const createdProduct = await productApi.create(newProduct);
+      if (createdProduct) {
+        dispatch({
+          type: ActionType.ADD_PRODUCT,
+          payload: {
+            product: createdProduct,
+          },
+        });
       }
-    },
-    [verifyExistingProduct]
-  );
+    } else {
+      throw new Error(`Product with name ${newProduct.name} already exists!`);
+    }
+  };
 
-  const removeProduct = useCallback(
-    (product: Product) => {
-      if (verifyExistingProduct(product)) {
-        dispatch({ type: ActionType.REMOVE_PRODUCT, payload: product });
-      }
-    },
-    [verifyExistingProduct]
-  );
+  const removeProduct = (id: number) => {
+    dispatch({ type: ActionType.REMOVE_PRODUCT, payload: { id } });
+  };
 
-  const updateProduct = (oldProduct: Product, newProduct: Product) => {
-    if (!isEqual(oldProduct, newProduct) && oldProduct) {
-      dispatch({ type: ActionType.UPDATE_PRODUCT, payload: { oldProduct, newProduct } });
+  const updateProduct = (id: number, updatedProduct: Product) => {
+    dispatch({
+      type: ActionType.UPDATE_PRODUCT,
+      payload: {
+        id,
+        updatedProduct,
+      },
+    });
+  };
+
+  const setProducts = async () => {
+    const fetchedProducts = await productApi.findAll();
+    console.log(fetchedProducts);
+    if (fetchedProducts) {
+      dispatch({
+        type: ActionType.GET_PRODUCTS,
+        payload: { fetchedProducts },
+      });
     }
   };
 
@@ -45,15 +64,16 @@ export const ProductsProvider = ({ children }: Children) => {
         addProduct,
         removeProduct,
         updateProduct,
+        setProducts,
       },
     }),
-    [addProduct, products, removeProduct]
+    [products]
   );
 
   return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;
 };
 
-export const useProducts = () => {
+export const useProduct = () => {
   const context = useContext(ProductsContext);
 
   if (!context) {

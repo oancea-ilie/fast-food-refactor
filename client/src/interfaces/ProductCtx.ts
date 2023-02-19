@@ -1,24 +1,44 @@
-export interface Product {
-  name: string;
-  description: string;
-  price: number;
-}
+import { Product, ServerProduct } from './Product';
+
 export enum ActionType {
+  GET_PRODUCTS = 'GET_PRODUCTS',
   ADD_PRODUCT = 'ADD_PRODUCT',
   REMOVE_PRODUCT = 'REMOVE_PRODUCT',
   UPDATE_PRODUCT = 'UPDATE_PRODUCT',
 }
-
-export type Action =
-  | { type: ActionType.ADD_PRODUCT; payload: Product }
-  | { type: ActionType.REMOVE_PRODUCT; payload: Product }
-  | { type: ActionType.UPDATE_PRODUCT; payload: { oldProduct: Product; newProduct: Product } };
-
 export interface ProductsContextI {
-  products: Product[];
+  products: ServerProduct[];
   methods: {
-    addProduct: (newProduct: Product) => void;
-    removeProduct: (product: Product) => void;
-    updateProduct: (oldProduct: Product, newProduct: Product) => void;
+    setProducts: () => Promise<void>;
+    addProduct: (newProduct: Product) => Promise<void>;
+    removeProduct: (id: number) => void;
+    updateProduct: (id: number, updatedProduct: Product) => void;
   };
 }
+
+export type Action =
+  | {
+      type: ActionType.GET_PRODUCTS;
+      payload: {
+        fetchedProducts: ServerProduct[];
+      };
+    }
+  | {
+      type: ActionType.ADD_PRODUCT;
+      payload: {
+        product: ServerProduct;
+      };
+    }
+  | {
+      type: ActionType.REMOVE_PRODUCT;
+      payload: {
+        id: number;
+      };
+    }
+  | {
+      type: ActionType.UPDATE_PRODUCT;
+      payload: {
+        id: number;
+        updatedProduct: Product;
+      };
+    };

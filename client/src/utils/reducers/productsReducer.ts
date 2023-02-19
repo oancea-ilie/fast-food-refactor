@@ -1,17 +1,17 @@
-import { ActionType, Product } from './../../interfaces/ProductCtx';
+import { ActionType } from './../../interfaces/ProductCtx';
 import { Action } from '../../interfaces/ProductCtx';
-import { isEqual } from 'lodash';
+import { ServerProduct } from '../../interfaces/Product';
 
-export const productsReducer = (products: Product[], action: Action) => {
+export const productsReducer = (products: ServerProduct[], action: Action) => {
   switch (action.type) {
+    case ActionType.GET_PRODUCTS:
+      return action.payload.fetchedProducts;
     case ActionType.ADD_PRODUCT:
-      return [...products, action.payload];
+      return [action.payload.product, ...products];
     case ActionType.REMOVE_PRODUCT:
-      return products.filter((product) => !isEqual(product, action.payload));
+      return products;
     case ActionType.UPDATE_PRODUCT:
-      return products.map((product) =>
-        isEqual(product, action.payload.oldProduct) ? action.payload.newProduct : product
-      );
+      return products;
     default:
       return products;
   }
