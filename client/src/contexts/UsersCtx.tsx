@@ -19,9 +19,9 @@ interface User {
   email: string;
 }
 
-export const UserContext = createContext<UserContext | null>(null);
+export const UsersContext = createContext<UserContext | null>(null);
 
-export const UserProvider = ({ children }: Props) => {
+export const UsersProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null);
 
   const verifySameUser = useCallback((newUser: User) => isEqual(newUser, user), [user]);
@@ -37,9 +37,13 @@ export const UserProvider = ({ children }: Props) => {
 
   const values = useMemo(() => ({ user, updateUser }), [updateUser, user]);
 
-  return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
+  return <UsersContext.Provider value={values}>{children}</UsersContext.Provider>;
 };
 
 export const useUser = () => {
-  return useContext(UserContext);
+  const context = useContext(UsersContext);
+  if (!context) {
+    throw new Error('useUser must be used inside the User Provider');
+  }
+  return context;
 };

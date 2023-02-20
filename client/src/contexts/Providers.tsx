@@ -1,14 +1,14 @@
-import { ProductsProvider } from './productsCtx';
-import { UserProvider } from './userCtx';
+import { ProductsProvider } from './ProductsCtx';
+import { UsersProvider } from './UsersCtx';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
 const Providers = ({ children }: Props) => {
   return (
-    <UserProvider>
+    <UsersProvider>
       <ProductsProvider>{children}</ProductsProvider>
-    </UserProvider>
+    </UsersProvider>
   );
 };
 export default Providers;

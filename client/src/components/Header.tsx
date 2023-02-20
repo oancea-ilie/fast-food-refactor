@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useProduct } from '../contexts/productsCtx';
+import { useProduct } from '../contexts/ProductsCtx';
 
 const mockedProduct = { description: 'des', price: 30, name: 'name', stock: 10 };
 

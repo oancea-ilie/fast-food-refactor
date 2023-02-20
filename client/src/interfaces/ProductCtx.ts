@@ -8,6 +8,8 @@ export enum ActionType {
 }
 export interface ProductsContextI {
   products: ServerProduct[];
+  error: boolean;
+  isLoading: boolean;
   methods: {
     getProducts: () => Promise<void>;
     addProduct: (newProduct: Product) => Promise<void>;

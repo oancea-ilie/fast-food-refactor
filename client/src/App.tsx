@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import burger from './assets/burger.png';
 import Header from './components/Header';
-import { useProduct } from './contexts/productsCtx';
+import StateWrapper from './components/shared/StateWrapper';
+import { useProduct } from './contexts/ProductsCtx';
 
 const App = () => {
   console.log('App rendered!');
@@ -15,7 +16,11 @@ const App = () => {
     <div className="">
       <Header />
       App:
-      <div>
+      <StateWrapper
+        data={productsCtx.products}
+        error={productsCtx.error}
+        isLoading={productsCtx.isLoading}
+      >
         {productsCtx.products.map((item) => (
           <div key={item?.id}>
             <img src={burger} alt="burger" width={100} height={100} />
@@ -25,7 +30,7 @@ const App = () => {
             <div>{item.stock}</div>
           </div>
         ))}
-      </div>
+      </StateWrapper>
     </div>
   );
 };

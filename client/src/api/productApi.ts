@@ -1,4 +1,4 @@
-import { API_URL } from '../constants/api';
+import { API_URL } from '../constants/apiUrl';
 import { Product, ServerProduct } from '../interfaces/Product';
 import { ApiFetch } from '../interfaces/SharedInterfaces';
 
@@ -14,12 +14,15 @@ export class ProductApi {
     };
 
     const response = await fetch(`${this.URL}${path}`, options);
+    const parsedResponse = await response.json();
 
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(errorMessage);
+      if (parsedResponse?.error) {
+        throw new Error(parsedResponse?.message);
+      }
+      throw new Error('An error occurred!');
     }
-    return await response.json();
+    return parsedResponse;
   }
 
   public async findAll() {
