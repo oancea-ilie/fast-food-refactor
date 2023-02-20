@@ -4,7 +4,10 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        red: 'rgb(164, 26, 19)',
+        orange: '#eec300',
+      },
       fontFamily: {
         // sans: ['Shantell Sans'],
       },

@@ -1,4 +1,4 @@
-import { API_URL } from '../constants/apiUrl';
+import { API_URL } from '../constants/urls';
 import { Product, ServerProduct } from '../interfaces/Product';
 import { ApiFetch } from '../interfaces/SharedInterfaces';
 
