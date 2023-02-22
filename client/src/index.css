@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button {
+  border-radius: 4px;
+  transition: 0.2s all;
+  outline: none;
+  border: none;
+  display: inline-block;
+}
+a {
+  text-decoration: none;
+  transition: 0.2s all;
+  display: inline-block;
+}
+input {
+  transition: 0.2s all;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #a41a13;
+  padding: 0.3rem 0.5rem;
+}
+input:focus {
+  border: 1px solid #eec300;
+}
+img {
+  width: 100%;
+  max-width: 100%;
+}

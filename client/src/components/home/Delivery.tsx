@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import delivery1 from '../../assets/images/delivery-img-1.png';
 import delivery2 from '../../assets/images/delivery-img-2.png';
 
@@ -15,8 +16,7 @@ const Delivery = () => {
             push.
           </p>
           <p>Let us know and we will be there</p>
-
-          <a href="#">ORDER NOW</a>
+          <Link to="/">ORDER NOW</Link>
         </div>
       </div>
     </section>

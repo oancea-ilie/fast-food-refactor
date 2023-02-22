@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HomeSeparator = () => {
   return (
     <section className="separator">
@@ -19,7 +21,7 @@ const HomeSeparator = () => {
               <li>- Veggie Lover</li>
             </ul>
           </div>
-          <a href="#">ORDER NOW</a>
+          <Link to="/">ORDER NOW</Link>
         </div>
       </div>
     </section>

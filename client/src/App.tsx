@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import { routes } from './utils/routes';
-import './oldStyles.css';
 
 const App = () => {
   return (
