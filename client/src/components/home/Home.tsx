@@ -8,7 +8,7 @@ import Services from './Services';
 
 const Home = () => {
   return (
-    <main className="HOME bg-stone-200">
+    <main className="HOME bg-stone-200 pb-20">
       <HeroMain />
       <Offers />
       <Products />

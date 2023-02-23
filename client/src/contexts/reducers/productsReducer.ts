@@ -1,4 +1,4 @@
-import { ActionType } from './../../interfaces/ProductCtx';
+import { ActionType } from '../../interfaces/ProductCtx';
 import { Action } from '../../interfaces/ProductCtx';
 import { ServerProduct } from '../../interfaces/Product';
 

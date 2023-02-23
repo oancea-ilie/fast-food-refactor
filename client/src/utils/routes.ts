@@ -1,4 +1,9 @@
+import About from '../components/about/About';
+import Contact from '../components/contact/Contact';
 import Home from '../components/home/Home';
+import Login from '../components/login/Login';
+import SignUp from '../components/login/SignUp';
+import Menu from '../components/menu/Menu';
 
 type Route = {
   path: string;
@@ -17,30 +22,30 @@ export const routes: Route[] = [
     path: '/menu',
     name: 'Menu',
     display: true,
-    component: Home,
+    component: Menu,
   },
   {
     path: '/about',
     name: 'About Us',
     display: true,
-    component: Home,
+    component: About,
   },
   {
     path: '/contact',
     name: 'Contact',
     display: true,
-    component: Home,
+    component: Contact,
   },
   {
     path: '/login',
     name: 'Login',
     display: false,
-    component: Home,
+    component: Login,
   },
   {
-    path: '/logout',
-    name: 'logout',
+    path: '/register',
+    name: 'register',
     display: false,
-    component: Home,
+    component: SignUp,
   },
 ];

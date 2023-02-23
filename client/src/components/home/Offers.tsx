@@ -2,16 +2,15 @@ import { Link } from 'react-router-dom';
 
 const Offers = () => {
   return (
-    <section className="OFFERS">
+    <section className="OFFERS mx-4">
       <div className="max-w-6xl grid grid-cols-3 gap-4 mx-auto pt-20">
         <div className='h-52 bg-[url("./assets/images/ofer-img-1.jpg")] rounded-md shadow-md flex flex-col items-end'>
           <div className="bg-red opacity-90 w-48 h-full p-4 flex flex-col items-start rounded-md rounded-tl-none rounded-bl-none">
             <div className="flex flex-col items-start">
-              <h1 className="text-white font-bold text-2xl text-end">
+              <h1 className="text-white font-bold text-2xl">
                 Pizza Calabria
               </h1>
               <p className="text-white italic mt-2">Mascarpone</p>
-              <p className="text-white italic mt-1">Nduja Spicy</p>
             </div>
             <Link
               to="/"
@@ -33,7 +32,7 @@ const Offers = () => {
               </div>
               <Link
                 to="/"
-                className=" text-white text-end bg-orange hover:rounded-2xl mt-4 px-4 py-1 rounded"
+                className="text-white text-end bg-orange hover:rounded-2xl mt-4 px-4 py-1 rounded"
               >
                 Try It Now
               </Link>

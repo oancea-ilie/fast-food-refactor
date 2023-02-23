@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useMemo, useReducer, useState } from 'react';
 import { ActionType, ProductsContextI } from '../interfaces/ProductCtx';
-import { productsReducer } from '../utils/reducers/productsReducer';
+import { productsReducer } from './reducers/productsReducer';
 import { Children } from '../interfaces/SharedInterfaces';
 import { Product, ServerProduct } from '../interfaces/Product';
 import { ProductApi } from '../api/productApi';

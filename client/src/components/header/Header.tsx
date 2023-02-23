@@ -45,8 +45,8 @@ const Header = () => {
         }`}
         onClick={() => toggleMenu(false)}
       />
-      <section className="HEADER bg-red drop-shadow-xl sticky top-0 left-0 z-10 w-full">
-        <div className="flex p-4 lg:hidden justify-between max-w-6xl mx-auto items-center">
+      <section className="HEADER bg-red drop-shadow-xl sticky top-0 left-0 z-10 w-full px-4">
+        <div className="flex py-4 lg:hidden justify-between max-w-6xl mx-auto items-center">
           <Link to="/">
             <img src={deliveroo} className="w-[130px]" alt="" />
           </Link>
@@ -57,9 +57,9 @@ const Header = () => {
             <AiOutlineMenu className="" size={25} />
           </div>
         </div>
-        <div className="min-[0px]:hidden lg:flex py-6 items-center text-white justify-between mx-auto max-w-6xl">
+        <div className="min-[0px]:hidden lg:flex py-2 items-center text-white justify-between mx-auto max-w-6xl">
           <Link to="/">
-            <img src={deliveroo} className="w-[11.875rem]" alt="" />
+            <img src={deliveroo} className="w-[170px]" alt="" />
           </Link>
           <nav className="flex gap-6 items-center">
             {routes.map(
