@@ -1,17 +1,30 @@
-import {RiUserSharedFill} from "react-icons/ri";
+import { FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Btn from '../shared/Btn';
 
 const Login = () => {
   return (
-    <section className='LOGIN bg-red py-24 grid'>
-      <RiUserSharedFill size={80} className="mx-auto mb-4 text-orange" />
-      <h1 className='text-center text-white text-4xl'>Login</h1>
+    <section className="LOGIN bg-red py-24 grid">
+      <FaUserAlt size={80} className="mx-auto mb-6 text-orange" />
+      <h1 className="text-center text-white text-4xl">Login</h1>
       <div className="divider bg-orange h-[1px] w-[40px] mx-auto mb-8" />
-      <div className="flex flex-col items-center gap-5">
-        <input type="text" placeholder="Your name.." className="input input-secondary w-full max-w-xs text-red placeholder:text-red" />
-        <input type="password" placeholder="Your password.." className="input input-secondary w-full max-w-xs text-red placeholder:text-red" />
-        <button className='btn btn-secondary text-black w-[320px] mx-auo'>Login</button>
-        <Link to='/register' className='link text-white hover:text-orange'>You are not registered yet?</Link>
+      <div className="flex flex-col items-center gap-6 max-w-xs mx-auto w-full">
+        <input
+          type="text"
+          className="text-red w-full py-3 font-light px-4 placeholder:text-black/60 text-sm focus:border-transparent"
+          placeholder="Name"
+        />
+        <input
+          type="password"
+          className="text-red w-full py-3 font-light px-4 placeholder:text-black/60 text-sm focus:border-transparent"
+          placeholder="Password"
+        />
+        <Btn variant="orange" className="py-3 px-10 w-full">
+          Login
+        </Btn>
+        <Link to="/register" className="link text-white hover:text-orange">
+          You are not registered yet?
+        </Link>
       </div>
     </section>
   );

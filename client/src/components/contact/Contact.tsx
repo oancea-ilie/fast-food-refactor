@@ -16,7 +16,7 @@ const Contact = () => {
           </Link>
         </div>
       </div>
-      <div className="grid grid-cols-[2fr,1fr] max-w-6xl mx-auto mt-14 gap-12">
+      <div className="grid grid-cols-[2fr,1fr] max-w-6xl mx-auto py-14 gap-12">
         <div className="--form grid justify-items-start bg-white rounded-md px-10 py-14 shadow-lg -mt-24 z-10">
           <h1 className="text-black font-bold text-3xl">
             We Love To Hear From You
@@ -30,22 +30,22 @@ const Contact = () => {
             <div className="flex w-full gap-5">
               <input
                 type="text"
-                className="w-full py-3 font-light px-4 placeholder:text-black/60 text-sm"
+                className="text-red w-full py-3 font-light px-4 placeholder:text-black/60 text-sm"
                 placeholder="Name"
               />
               <input
                 type="text"
-                className="w-full py-3 font-light px-4 placeholder:text-black/60 text-sm"
+                className="text-red w-full py-3 font-light px-4 placeholder:text-black/60 text-sm"
                 placeholder="Email"
               />
             </div>
             <input
               type="text"
-              className="w-full py-3 font-light px-4 placeholder:text-black/60 text-sm"
+              className="text-red w-full py-3 font-light px-4 placeholder:text-black/60 text-sm"
               placeholder="Subject"
             />
             <textarea
-              className="w-full h-40 px-4 py-3 font-light placeholder:text-black/60 text-sm"
+              className="text-red w-full h-40 px-4 py-3 font-light placeholder:text-black/60 text-sm"
               placeholder="Message"
             />
             <Btn variant="red" className="px-12 py-3">

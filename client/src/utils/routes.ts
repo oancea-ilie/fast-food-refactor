@@ -2,7 +2,7 @@ import About from '../components/about/About';
 import Contact from '../components/contact/Contact';
 import Home from '../components/home/Home';
 import Login from '../components/login/Login';
-import SignUp from '../components/login/SignUp';
+import Register from '../components/login/Register';
 import Menu from '../components/menu/Menu';
 
 type Route = {
@@ -46,6 +46,6 @@ export const routes: Route[] = [
     path: '/register',
     name: 'register',
     display: false,
-    component: SignUp,
+    component: Register,
   },
 ];
