@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import bgImg from '../../assets/images/hero-img.png';
+import Btn from '../shared/Btn';
 
 const HeroMain = () => {
   return (
@@ -17,12 +17,9 @@ const HeroMain = () => {
             accusamus ducimus? odio tempora, consequatur ullam quibusdam nostrum
             ut incidunt quas
           </p>
-          <Link
-            to="/"
-            className="mt-6 py-5 px-14 tracking-[0.2rem] font-semibold bg-white text-black rounded hover:bg-orange hover:text-white"
-          >
+          <Btn variant="white" className="mt-6 py-5 px-14">
             ORDER NOW
-          </Link>
+          </Btn>
         </div>
         <img src={bgImg} alt="" />
       </div>

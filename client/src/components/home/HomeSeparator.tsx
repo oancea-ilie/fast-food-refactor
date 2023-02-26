@@ -1,3 +1,5 @@
+import Btn from '../shared/Btn';
+
 const HomeSeparator = () => {
   return (
     <section className="SEPARATOR ">
@@ -26,9 +28,9 @@ const HomeSeparator = () => {
               <li className="text-orange text-xl"> - Veggie Lover</li>
             </ul>
           </div>
-          <button className="bg-red text-white py-5 px-16 mt-5 hover:bg-orange tracking-[0.2rem]">
+          <Btn variant="red" className="mt-6 py-5 px-14">
             ORDER NOW
-          </button>
+          </Btn>
         </div>
       </div>
     </section>

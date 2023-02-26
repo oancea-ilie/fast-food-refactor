@@ -17,7 +17,7 @@ const HotCombo = () => {
               <h2 className="font-light italic text-orange text-2xl my-2">
                 Tasty Combo
               </h2>
-              <div className="bg-red rounded-[50%] text-white p-4 w-28 h-28">
+              <div className="bg-red rounded-[50%] text-white p-4 w-28 h-28 mt-6">
                 <h1 className="text-xl text-center">Only</h1>
                 <div className="flex">
                   <p className="text-2xl">$</p>
@@ -34,7 +34,7 @@ const HotCombo = () => {
               <h2 className="font-light italic text-orange text-2xl my-2">
                 Tasty Combo
               </h2>
-              <div className="bg-orange rounded-[50%] text-white p-4 w-28 h-28">
+              <div className="bg-orange rounded-[50%] text-white p-4 w-28 h-28 mt-6">
                 <h1 className="text-xl text-center">Only</h1>
                 <div className="flex">
                   <p className="text-2xl">$</p>

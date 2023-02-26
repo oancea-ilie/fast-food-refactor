@@ -1,4 +1,5 @@
 import delivery1 from '../../assets/images/delivery-img-1.png';
+import Btn from '../shared/Btn';
 
 const Delivery = () => {
   return (
@@ -19,9 +20,9 @@ const Delivery = () => {
           <p className="text-xl mt-4 text-white">
             Let us know and we will be there
           </p>
-          <button className="text-md mt-8 text-black bg-orange hover:bg-white hover:text-red py-5 px-12 tracking-[0.2rem]">
+          <Btn variant="orange" className="py-5 px-14 mt-6">
             ORDER NOW
-          </button>
+          </Btn>
         </div>
       </div>
     </section>

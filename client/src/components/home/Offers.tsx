@@ -1,28 +1,23 @@
-import { Link } from 'react-router-dom';
+import Btn from '../shared/Btn';
 
 const Offers = () => {
   return (
     <section className="OFFERS mx-4">
       <div className="max-w-6xl grid grid-cols-3 gap-4 mx-auto pt-20">
         <div className='h-52 bg-[url("./assets/images/ofer-img-1.jpg")] rounded-md shadow-md flex flex-col items-end'>
-          <div className="bg-red opacity-90 w-48 h-full p-4 flex flex-col items-start rounded-md rounded-tl-none rounded-bl-none">
+          <div className="bg-red/70 w-36 h-full p-4 flex flex-col items-start rounded-md rounded-tl-none rounded-bl-none">
             <div className="flex flex-col items-start">
-              <h1 className="text-white font-bold text-2xl">
-                Pizza Calabria
-              </h1>
+              <h1 className="text-white font-bold text-2xl">Pizza Calabria</h1>
               <p className="text-white italic mt-2">Mascarpone</p>
             </div>
-            <Link
-              to="/"
-              className="text-white flex items-end bg-orange hover:rounded-2xl mt-4 px-4 py-1 rounded"
-            >
+            <Btn variant="small" className="py-1 px-3 mt-4">
               Try It Now
-            </Link>
+            </Btn>
           </div>
         </div>
-        <div className='h-52 bg-[url("./assets/images/ofer-img-2.jpg")] rounded-md shadow-md'>
-          <div className="opacity-90 h-full flex flex-col items-end">
-            <div className="bg-red p-4 h-full w-48 flex flex-col items-start rounded-md rounded-tl-none rounded-bl-none">
+        <div className='h-52 bg-[url("./assets/images/iced-coffee.webp")] rounded-md shadow-md bg-cover bg-left'>
+          <div className="h-full flex flex-col items-end">
+            <div className="bg-red/90 p-4 h-full w-36 flex flex-col items-start rounded-md rounded-tl-none rounded-bl-none">
               <div className=" flex flex-col items-start">
                 <h1 className="text-orange font-bold text-2xl">
                   ICED, <br />
@@ -30,18 +25,15 @@ const Offers = () => {
                 </h1>
                 <h2 className="text-white font-bold text-2xl">SUMMER</h2>
               </div>
-              <Link
-                to="/"
-                className="text-white text-end bg-orange hover:rounded-2xl mt-4 px-4 py-1 rounded"
-              >
+              <Btn variant="small" className="py-1 px-3 mt-4">
                 Try It Now
-              </Link>
+              </Btn>
             </div>
           </div>
         </div>
-        <div className='h-52 bg-[url("./assets/images/ofer-img-3.jpg")] rounded-md shadow-md'>
-          <div className="opacity-90 h-full flex flex-col items-end">
-            <div className="bg-red w-48 h-full p-4 rounded-md rounded-tl-none rounded-bl-none">
+        <div className='h-52 bg-[url("./assets/images/ofer-img-3.jpg")] bg-cover bg-left rounded-md shadow-md'>
+          <div className="h-full flex flex-col items-end">
+            <div className="bg-red/80 w-36 h-full p-4 rounded-md rounded-tl-none rounded-bl-none">
               <h2 className="text-white text-xl font-bold">Get Your</h2>
               <h1 className="text-white font-light text-xl mt-1">
                 FREE, <br />{' '}
@@ -49,12 +41,9 @@ const Offers = () => {
                   French Fry
                 </span>
               </h1>
-              <Link
-                to="/"
-                className="text-white bg-orange hover:rounded-2xl mt-4 px-4 py-1 rounded"
-              >
+              <Btn variant="small" className="py-1 px-3 mt-4">
                 Try It Now
-              </Link>
+              </Btn>
             </div>
           </div>
         </div>
