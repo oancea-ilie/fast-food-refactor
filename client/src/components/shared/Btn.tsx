@@ -1,13 +1,10 @@
-import { ReactNode } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'white' | 'red' | 'orange' | 'small' | 'product';
-  disabled?: boolean;
-  children: ReactNode;
-  className?: string;
 }
 
-const Btn = ({ variant, disabled, children, className }: Props) => {
+const Btn = ({ variant, ...props }: Props) => {
   let classes = '';
 
   switch (variant) {
@@ -30,13 +27,13 @@ const Btn = ({ variant, disabled, children, className }: Props) => {
         'bg-white text-black tracking-[.2rem] hover:bg-orange hover:text-white';
   }
 
-  if (disabled) {
+  if (props.disabled) {
     classes += ' opacity-50 cursor-not-allowed';
   }
 
   return (
-    <button className={`${classes} ${className}`} disabled={disabled}>
-      {children}
+    <button {...props} className={`${classes} ${props.className}`}>
+      {props.children}
     </button>
   );
 };

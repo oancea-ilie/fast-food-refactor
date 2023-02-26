@@ -45,7 +45,7 @@ const Header = () => {
         }`}
         onClick={() => toggleMenu(false)}
       />
-      <section className="HEADER bg-red drop-shadow-xl sticky top-0 left-0 z-10 w-full px-4">
+      <section className="HEADER bg-red drop-shadow-xl sticky top-0 left-0 z-20 w-full px-4">
         <div className="flex py-4 lg:hidden justify-between max-w-6xl mx-auto items-center">
           <Link to="/">
             <img src={deliveroo} className="w-[130px]" alt="" />
@@ -57,7 +57,7 @@ const Header = () => {
             <AiOutlineMenu className="" size={25} />
           </div>
         </div>
-        <div className="min-[0px]:hidden lg:flex py-2 items-center text-white justify-between mx-auto max-w-6xl">
+        <div className="min-[0px]:hidden lg:flex py-4 items-center text-white justify-between mx-auto max-w-6xl">
           <Link to="/">
             <img src={deliveroo} className="w-[170px]" alt="" />
           </Link>
@@ -85,7 +85,7 @@ const Header = () => {
             </Link>
             <div className="pl-4 border-l border-l-white">
               <h1 className="text-orange font-bold text-lg">Order now</h1>
-              <p className="hover:text-orange transition-all text-2xl font-bold duration-200">
+              <p className="hover:text-orange transition-all text-xl cursor-default font-bold duration-200">
                 1800 456 7890
               </p>
             </div>

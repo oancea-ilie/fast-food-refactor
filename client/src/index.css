@@ -14,15 +14,18 @@ a {
   transition: 0.2s all;
   display: inline-block;
 }
-input {
+input,
+textarea {
   transition: 0.2s all;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #a41a13;
   padding: 0.3rem 0.5rem;
+  background-color: rgb(246, 247, 252);
+  border: 1px solid transparent;
 }
-input:focus {
-  border: 1px solid #eec300;
+input:focus,
+textarea:focus {
+  border: 1px solid rgb(164, 26, 19);
 }
 img {
   width: 100%;

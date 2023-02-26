@@ -1,79 +1,44 @@
+import { useState } from 'react';
+import { ProductFilters } from '../../constants/constants';
+import ProductCard from '../home/ProductCard';
+
 const MenuProducts = () => {
+  const [activeFilter, setActiveFilter] = useState<string>(
+    ProductFilters[0].name
+  );
+
+  const handleFilter = ({ name, query }: { name: string; query: string }) => {
+    console.log(query);
+    setActiveFilter(name);
+  };
+
   return (
-    <div className="grid grid-cols-2 gap-4 mx-4">
-      <div className='bg-[url("./assets/images/menu-1.jpg")] rounded-md shadow-md bg-bottom relative p-8'>
-        <div className="bg-blue/60 rounded-md ">
-          <div className="p-8">
-            <h1 className="text-white text-5xl mb-4 font-bold">
-              Non Veg Chees Burger
-            </h1>
-            <p className="text-white leading-7 mb-4 mr-20">
-              Completely synergize resource taxing relation ships via premier
-              niche markets. Professionally cultivate one-to-one customer
-              service.
-            </p>
-            <h1 className="text-white font-extrabold text-5xl mb-4">$5.99</h1>
-            <button className="bg-red font-bold text-white p-4 tracking-[0.3rem] hover:bg-white hover:text-red">
-              ORDER NOW
+    <section className="--menu-products mb-10 mx-4">
+      <div className="--products-header border-b-gray-400 border-b pb-10 mb-10 max-w-6xl mx-auto">
+        <div className="--title mt-14 my-10 flex flex-col items-center">
+          <h1 className="font-bold text-4xl text-black mb-4">Our Products</h1>
+          <div className="w-16 h-1 bg-red-l rounded-full" />
+        </div>
+        <div className="filters flex gap-10 justify-center">
+          {ProductFilters.map((filter) => (
+            <button
+              className={`bg-transparent text-black text-2xl font-medium hover:bg-transparent hover:text-red-l ${
+                filter.name === activeFilter ? 'text-red-l' : ''
+              }`}
+              key={filter.name}
+              onClick={() => handleFilter(filter)}
+            >
+              {filter.name}
             </button>
-          </div>
+          ))}
         </div>
       </div>
-      <div className='bg-[url("./assets/images/menu-2.jpg")] rounded-md shadow-md bg-bottom relative p-8'>
-        <div className="bg-blue/60 rounded-md ">
-          <div className="p-8">
-            <h1 className="text-white text-5xl mb-4 font-bold">
-              Guardian Spicy Burger
-            </h1>
-            <p className="text-white leading-7  mb-4 mr-20">
-              Completely synergize resource taxing relation ships via premier
-              niche markets. Professionally cultivate one-to-one customer
-              service.
-            </p>
-            <h1 className="text-white font-extrabold text-5xl mb-4">$7.99</h1>
-            <button className="bg-red text-white p-4 tracking-[0.3rem] font-bold hover:bg-white hover:text-red">
-              ORDER NOW
-            </button>
-          </div>
-        </div>
+      <div className="--products-body max-w-6xl mx-auto grid grid-cols-4 gap-4">
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+          <ProductCard key={item} />
+        ))}
       </div>
-      <div className='bg-[url("./assets/images/menu-3.jpg")] rounded-md shadow-md bg-bottom relative p-8'>
-        <div className="bg-blue/60 rounded-md ">
-          <div className="p-8">
-            <h1 className="text-white text-5xl mb-4 font-bold">
-              Magrathan Chees Pizza
-            </h1>
-            <p className="text-white leading-7 mb-4 mr-20">
-              Completely synergize resource taxing relation ships via premier
-              niche markets. Professionally cultivate one-to-one customer
-              service.
-            </p>
-            <h1 className="text-white font-extrabold text-5xl mb-4">$8.99</h1>
-            <button className="bg-red text-white p-4 tracking-[0.3rem] font-bold hover:bg-white hover:text-red">
-              ORDER NOW
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className='bg-[url("./assets/images/menu-4.jpg")] rounded-md shadow-md bg-bottom relative p-8'>
-        <div className="bg-blue/60 rounded-md ">
-          <div className="p-8">
-            <h1 className="text-white text-5xl mb-4 font-bold">
-              Sandwitch Spicy Burger
-            </h1>
-            <p className="text-white leading-7 mr-20 mb-4">
-              Completely synergize resource taxing relation ships via premier
-              niche markets. Professionally cultivate one-to-one customer
-              service.
-            </p>
-            <h1 className="text-white font-extrabold text-5xl mb-4">$4.99</h1>
-            <button className="bg-red text-white p-4 tracking-[0.3rem] font-bold hover:bg-white hover:text-red">
-              ORDER NOW
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 export default MenuProducts;
