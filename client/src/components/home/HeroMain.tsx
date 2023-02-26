@@ -3,7 +3,7 @@ import Btn from '../shared/Btn';
 
 const HeroMain = () => {
   return (
-    <section className="bg-red py-20 px-4">
+    <section className="bg-[url('./assets/images/contact-bg.jpg')] bg-center py-20 px-4">
       <div className="grid grid-cols-2 max-w-6xl mx-auto items-center">
         <div className="mr-4">
           <h2 className="text-orange text-3xl">Hot Stuff</h2>
