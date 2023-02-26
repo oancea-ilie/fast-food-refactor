@@ -4,7 +4,7 @@ import { BsFillCartPlusFill } from 'react-icons/bs';
 
 const ProductCard = () => {
   return (
-    <div className="card rounded-md shadow-xl">
+    <div className="card rounded-md shadow-md">
       <img src={img} className="max-w-full" alt="Shoes" />
       <div className="card-body p-4">
         <h2 className="card-title text-black">Burger!</h2>

@@ -20,7 +20,7 @@ const Footer = () => {
           <p className="text-info">contact@deliveroo.com</p>
         </div>
         <div className="grid">
-          <h1 className="text-white text-xl font-bold">Opening Hour</h1>
+          <h1 className="text-white text-xl font-bold">Opening Hours</h1>
           <div className="w-[40px] bg-red h-[1px] mt-2 mb-8" />
           <div className="flex gap-10">
             <div className="flex flex-col gap-3">

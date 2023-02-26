@@ -43,8 +43,8 @@ const Products = () => {
         ))}
       </div>
       <Btn
-        variant="orange"
-        className="mt-8 py-5 px-36 flex justify-center mx-auto shadow-md"
+        variant="red"
+        className="mt-8 py-5 px-24 flex justify-center mx-auto shadow-md"
         onClick={() => navigate('/menu')}
       >
         See All
