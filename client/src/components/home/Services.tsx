@@ -6,7 +6,7 @@ import service4 from '../../assets/images/service-icon-4.png';
 const Services = () => {
   return (
     <section className="SERVICES max-w-6xl mx-auto">
-      <div className="bg-white grid grid-cols-4 px-10 py-20 gap-10 rounded-md shadow-md  ">
+      <div className="grid grid-cols-4 px-10 py-20 gap-10 rounded-md shadow-lg border-[0.5px] border-orange">
         <div className="flex flex-col items-center">
           <img
             src={service1}
@@ -14,10 +14,10 @@ const Services = () => {
             alt=""
           />
           <h1 className="font-extrabold text-neutral text-md text-center my-2">
-            Free shipping on first order
+            Free shipping
           </h1>
           <p className="text-center text-neutral font-light">
-            Sign up for updates and get free shipping
+            Get your first tasty order for free!
           </p>
         </div>
         <div className="flex flex-col items-center">
@@ -27,10 +27,10 @@ const Services = () => {
             alt=""
           />
           <h1 className="font-extrabold text-neutral text-md  text-center my-2">
-            Best Taste Guarantee
+            High-quality ingredients
           </h1>
           <p className="text-center text-neutral font-light">
-            We use best ingredients to cook the taste food.
+            We use only the freshest, top-quality ingredients.
           </p>
         </div>
         <div className="flex flex-col items-center">
@@ -40,10 +40,10 @@ const Services = () => {
             alt=""
           />
           <h1 className="font-extrabold text-neutral text-md text-center my-2">
-            Variety of Dishes
+            A variety dishes
           </h1>
           <p className="text-center text-neutral font-light">
-            We give variety of dishes, deserts, and drinks
+            Explore our wide range of delicious dishes.
           </p>
         </div>
         <div className="flex flex-col items-center">
@@ -53,10 +53,10 @@ const Services = () => {
             alt=""
           />
           <h1 className="font-extrabold text-neutral text-md text-center my-2">
-            25 Minutes Delivery
+            Fast, 25-minute delivery
           </h1>
           <p className="text-center text-neutral font-light">
-            We deliver your food at your door that you order
+            Satisfy your cravings in just 25 minutes or less!
           </p>
         </div>
       </div>

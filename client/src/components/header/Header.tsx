@@ -66,7 +66,7 @@ const Header = () => {
               (route) =>
                 route.display && (
                   <Link
-                    className={`hover:text-orange text-xl ${
+                    className={`hover:text-orange text-xl font-light ${
                       isActive(route.path) ? 'text-orange' : ''
                     }`}
                     to={route.path}
@@ -78,7 +78,7 @@ const Header = () => {
             )}
             <Link
               to="/login"
-              className={`text-lg px-10 py-1 border rounded border-white hover:bg-white hover:text-red 
+              className={`text-lg font-light px-10 py-1 border rounded border-white hover:bg-white hover:text-red 
                 ${isActive('/login') ? 'bg-white text-red' : ''}`}
             >
               Login

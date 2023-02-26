@@ -8,7 +8,7 @@ const Offers = () => {
           <div className="bg-red/70 w-36 h-full p-4 flex flex-col items-start rounded-md rounded-tl-none rounded-bl-none">
             <div className="flex flex-col items-start">
               <h1 className="text-white font-bold text-2xl">Pizza Calabria</h1>
-              <p className="text-white italic mt-2">Mascarpone</p>
+              <p className="text-white italic mt-2">with ricotta</p>
             </div>
             <Btn variant="small" className="py-1 px-3 mt-4">
               Try It Now
@@ -34,9 +34,9 @@ const Offers = () => {
         <div className='h-52 bg-[url("./assets/images/ofer-img-3.jpg")] bg-cover bg-left rounded-md shadow-md'>
           <div className="h-full flex flex-col items-end">
             <div className="bg-red/80 w-36 h-full p-4 rounded-md rounded-tl-none rounded-bl-none">
-              <h2 className="text-white text-xl font-bold">Get Your</h2>
+              <h2 className="text-white text-xl font-bold">Get</h2>
               <h1 className="text-white font-light text-xl mt-1">
-                FREE, <br />{' '}
+                Your <br />{' '}
                 <span className="inline-block mt-2 italic text-orange text-lg">
                   French Fry
                 </span>

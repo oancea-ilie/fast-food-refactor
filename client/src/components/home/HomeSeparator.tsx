@@ -23,9 +23,9 @@ const HomeSeparator = () => {
               </h2>
             </div>
             <ul className="ml-10 flex flex-col gap-1">
-              <li className="text-orange text-xl"> - Chicken Halon</li>
-              <li className="text-orange text-xl"> - Summer Pizza</li>
-              <li className="text-orange text-xl"> - Veggie Lover</li>
+              <li className="text-orange text-xl"> - Veggie Supreme</li>
+              <li className="text-orange text-xl"> - Classic Margherita</li>
+              <li className="text-orange text-xl"> - BBQ Chicken</li>
             </ul>
           </div>
           <Btn variant="red" className="mt-6 py-5 px-14">

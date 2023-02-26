@@ -1,12 +1,16 @@
-import Deliveroo from "../../assets/images/deliveroo.png";
+import Deliveroo from '../../assets/images/deliveroo.png';
 
 const Footer = () => {
+  const thisYear = new Date().getFullYear();
+
   return (
     <div className="bg-blue">
       <div className="grid grid-cols-3 max-w-6xl mx-auto py-14 gap-14">
         <div className="grid items-center justify-items-center">
           <img className="w-[200px]" src={Deliveroo} alt="" />
-          <p className="text-info text-center mx-14 text-md">Just Burgers 256, backer Street, Suit Building New York, 5245</p>
+          <p className="text-info text-center mx-14 text-md">
+            Just Burgers 256, backer Street, Suit Building New York, 5245
+          </p>
         </div>
         <div className="grid">
           <h1 className="text-white text-xl font-bold">Contact Info</h1>
@@ -33,9 +37,15 @@ const Footer = () => {
         </div>
       </div>
       <div className="credentials py-8 border-t border-t-divider ">
-        <p className="text-info text-center">© Copyright 2022 | <a href="https://google.ro" className="text-red hover:text-orange">Oancea Ilie</a>. All right reserved.</p>
+        <p className="text-info text-center">
+          © Copyright {thisYear} |{' '}
+          <a href="https://google.ro" className="text-red hover:text-orange">
+            Oancea Ilie
+          </a>
+          . All right reserved.
+        </p>
       </div>
     </div>
-);
+  );
 };
 export default Footer;

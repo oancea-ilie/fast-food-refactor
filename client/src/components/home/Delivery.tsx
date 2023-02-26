@@ -18,7 +18,7 @@ const Delivery = () => {
             push.
           </p>
           <p className="text-xl mt-4 text-white">
-            Let us know and we will be there
+            Let us know and we will be there.
           </p>
           <Btn variant="orange" className="py-5 px-14 mt-6">
             ORDER NOW
