@@ -1,11 +1,11 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, isString, IsString } from 'class-validator';
 
 export class CreateProductDto {
   @IsNotEmpty()
   @IsString()
   name: string;
 
-  @IsNumber()
+  // @IsNumber()
   @IsNotEmpty()
   price: number;
 
@@ -13,6 +13,8 @@ export class CreateProductDto {
   @IsString()
   description: string;
 
-  image?: string;
+  @IsString()
+  @IsNotEmpty()
+  image: string;
   stock?: number;
 }

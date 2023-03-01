@@ -15,7 +15,7 @@ export class ProductsService {
     @InjectRepository(Product) private productsRepository: Repository<Product>
   ) {}
 
-  findAll() {
+  async findAll() {
     return this.productsRepository.find();
   }
 
@@ -37,8 +37,7 @@ export class ProductsService {
     if (existingProduct) {
       throw new ConflictException('Product with this name already exists');
     }
-
-    const newProduct = this.productsRepository.create(createProductDto);
+    const newProduct = await this.productsRepository.create(createProductDto);
     return this.productsRepository.save(newProduct);
   }
 

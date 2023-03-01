@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { ProductFilters } from '../../constants/constants';
+import { useProduct } from '../../contexts/ProductsCtx';
 import ProductCard from '../home/ProductCard';
 
 const MenuProducts = () => {
+  const { products } = useProduct();
+
   const [activeFilter, setActiveFilter] = useState<string>(
     ProductFilters[0].name
   );
@@ -34,8 +37,8 @@ const MenuProducts = () => {
         </div>
       </div>
       <div className="--products-body max-w-6xl mx-auto grid grid-cols-4 gap-4">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-          <ProductCard key={item} />
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </section>

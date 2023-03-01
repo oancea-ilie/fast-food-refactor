@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductFilters } from '../../constants/constants';
+import { useProduct } from '../../contexts/ProductsCtx';
 import Btn from '../shared/Btn';
 import ProductCard from './ProductCard';
 
 const Products = () => {
   const navigate = useNavigate();
+
+  const { products } = useProduct();
+
+  console.log(products);
 
   const [activeFilter, setActiveFilter] = useState<string>(
     ProductFilters[0].name
@@ -38,8 +43,8 @@ const Products = () => {
         </div>
       </div>
       <div className="--products-body max-w-6xl mx-auto grid grid-cols-4 gap-4">
-        {[1, 2, 3, 4].map((item) => (
-          <ProductCard key={item} />
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
       <Btn

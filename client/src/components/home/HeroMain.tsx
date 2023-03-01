@@ -1,9 +1,13 @@
 import bgImg from '../../assets/images/hero-img.png';
 import Btn from '../shared/Btn';
+import home from '../../assets/svgs/home.svg';
 
 const HeroMain = () => {
   return (
-    <section className="bg-[url('./assets/images/contact-bg.jpg')] bg-center py-20 px-4">
+    <section
+      className="py-20 px-4"
+      style={{ backgroundImage: `url("${home}")` }}
+    >
       <div className="grid grid-cols-2 max-w-6xl mx-auto items-center">
         <div className="mr-4">
           <h2 className="text-orange text-2xl mb-2">Our Speciality</h2>

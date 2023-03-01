@@ -3,7 +3,7 @@ export interface ServerProduct {
   name: string;
   description: string;
   price: number;
-  image?: string;
+  image: string;
   stock: number;
   createdAt: Date;
 }
