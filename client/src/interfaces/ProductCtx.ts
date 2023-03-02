@@ -1,4 +1,4 @@
-import { Product, ServerProduct, ClientProduct } from './Product';
+import { Product, ServerProduct } from './Product';
 
 export enum ActionType {
   GET_PRODUCTS = 'GET_PRODUCTS',
@@ -7,7 +7,7 @@ export enum ActionType {
   DELETE_PRODUCT = 'DELETE_PRODUCT',
 }
 export interface ProductsContextI {
-  products: ClientProduct[];
+  products: ServerProduct[];
   error: boolean;
   isLoading: boolean;
   methods: {

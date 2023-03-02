@@ -5,12 +5,18 @@ import deliveroo from '../../assets/images/deliveroo.png';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useWindowSize } from '../../hooks/useResize';
 import HeaderResponsive from './HeaderResponsive';
+import { useUser } from '../../contexts/UserCtx';
+import Avatar from './Avatar';
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
 
+  const userCtx = useUser();
+
   const size = useWindowSize();
+
   const location = useLocation();
+
   const toggleMenu = (state: boolean) => setOpenMenu(state);
 
   const isActive = (path: string) => location.pathname === path;
@@ -76,13 +82,17 @@ const Header = () => {
                   </Link>
                 )
             )}
-            <Link
-              to="/login"
-              className={`text-lg font-light px-10 py-1 border rounded border-white hover:bg-white hover:text-red 
+            {userCtx.user ? (
+              <Avatar userCtx={userCtx} />
+            ) : (
+              <Link
+                to="/login"
+                className={`text-lg font-light px-10 py-1 border rounded border-white hover:bg-white hover:text-red 
                 ${isActive('/login') ? 'bg-white text-red' : ''}`}
-            >
-              Login
-            </Link>
+              >
+                Login
+              </Link>
+            )}
             <div className="pl-4 border-l border-l-white">
               <h1 className="text-orange font-bold text-lg">Order now</h1>
               <p className="hover:text-orange transition-all text-xl cursor-default font-bold duration-200">

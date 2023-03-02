@@ -16,6 +16,8 @@ export const ProductsContext = createContext<ProductsContextI | null>(null);
 export const ProductsProvider = ({ children }: Children) => {
   const productApi = useMemo(() => new ProductApi(), []);
 
+  console.log('Context rendered!');
+
   const [error, setError] = useState<boolean>(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);

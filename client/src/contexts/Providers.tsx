@@ -1,16 +1,16 @@
 import { ProductsProvider } from './ProductsCtx';
-import { UsersProvider } from './UsersCtx';
+import { UserProvider } from './UserCtx';
 import { BrowserRouter } from 'react-router-dom';
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
 const Providers = ({ children }: Props) => {
   return (
-    <UsersProvider>
+    <UserProvider>
       <ProductsProvider>
         <BrowserRouter>{children}</BrowserRouter>
       </ProductsProvider>
-    </UsersProvider>
+    </UserProvider>
   );
 };
 export default Providers;
