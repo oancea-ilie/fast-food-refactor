@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContextI } from '../../interfaces/UserCtx';
+import { User } from '../../interfaces/User';
 
 interface Props {
-  userCtx: UserContextI;
+  user: User;
+  logOut: () => void;
 }
-const Avatar = ({ userCtx }: Props) => {
+const Avatar = ({ user, logOut }: Props) => {
   const navigate = useNavigate();
 
   const [items] = useState<number>(9);
@@ -18,7 +19,7 @@ const Avatar = ({ userCtx }: Props) => {
             <span className="indicator-item badge badge-secondary">
               {items}
             </span>
-            <img src={userCtx.user?.image} className="relative" />
+            <img src={user.image} className="relative" />
             <div
               tabIndex={0}
               className="overlay absolute top-0 left-0 w-12 h-full rounded-full cursor-pointer z-20"
@@ -41,7 +42,7 @@ const Avatar = ({ userCtx }: Props) => {
           Account
         </Link>
         <button
-          onClick={userCtx.handleLogOut}
+          onClick={logOut}
           className="hover:bg-slate-50/20 rounded-md p-3 text-start"
         >
           Log Out

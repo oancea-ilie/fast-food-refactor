@@ -5,13 +5,15 @@ import deliveroo from '../../assets/images/deliveroo.png';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useWindowSize } from '../../hooks/useResize';
 import HeaderResponsive from './HeaderResponsive';
-import { useUser } from '../../contexts/UserCtx';
 import Avatar from './Avatar';
+import useUser from '../../hooks/useUser';
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
 
-  const userCtx = useUser();
+  const { user, logOut } = useUser();
+
+  console.log('Header user ->', user);
 
   const size = useWindowSize();
 
@@ -20,12 +22,6 @@ const Header = () => {
   const toggleMenu = (state: boolean) => setOpenMenu(state);
 
   const isActive = (path: string) => location.pathname === path;
-
-  useEffect(() => {
-    if (openMenu) {
-      setOpenMenu(false);
-    }
-  }, [location]);
 
   useEffect(() => {
     if (size[0] > 1024 && openMenu) {
@@ -42,6 +38,12 @@ const Header = () => {
       document.addEventListener('keydown', () => toggleMenu(false));
     }
   }, [openMenu]);
+
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisible = () => {
+    setVisible(!visible);
+  };
 
   return (
     <>
@@ -82,12 +84,12 @@ const Header = () => {
                   </Link>
                 )
             )}
-            {userCtx.user ? (
-              <Avatar userCtx={userCtx} />
+            {user ? (
+              <Avatar user={user} logOut={logOut} />
             ) : (
               <Link
                 to="/login"
-                className={`text-lg font-light px-10 py-1 border rounded border-white hover:bg-white hover:text-red 
+                className={`text-lg font-light px-10 py-1 border rounded border-white hover:bg-white hover:text-red
                 ${isActive('/login') ? 'bg-white text-red' : ''}`}
               >
                 Login

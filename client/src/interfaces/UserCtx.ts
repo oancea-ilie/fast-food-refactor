@@ -1,7 +1,6 @@
 import { User } from './User';
 
-export interface UserContextI {
+export type UserContextI = {
   user: User | undefined;
-  handleLogOut: () => void;
-  handleLogIn: () => void;
-}
+  setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+};

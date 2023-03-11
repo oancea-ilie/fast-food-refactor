@@ -6,6 +6,7 @@ export enum ActionType {
   UPDATE_PRODUCT = 'UPDATE_PRODUCT',
   DELETE_PRODUCT = 'DELETE_PRODUCT',
 }
+
 export interface ProductsContextI {
   products: ServerProduct[];
   error: boolean;

@@ -12,8 +12,8 @@ const HeaderResponsive = ({ openMenu, toggleMenu, location }: Props) => {
 
   return (
     <section
-      className={`HEADER-RESPONSIVE fixed top-0 right-0 z-30 h-screen bg-red flex-col w-56 text-white drop-shadow-xl ${
-        openMenu ? 'flex' : 'hidden'
+      className={`HEADER-RESPONSIVE fixed top-0 z-30 h-screen bg-red flex-col w-56 text-white drop-shadow-xl transition-all duration-300 ${
+        openMenu ? 'right-0' : 'right-[-100%]'
       }`}
     >
       <div className="p-5 flex justify-end" onClick={() => toggleMenu(false)}>

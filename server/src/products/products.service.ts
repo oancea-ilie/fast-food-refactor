@@ -4,28 +4,28 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { MongoRepository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
+const ObjectId = require('mongodb').ObjectId;
 
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectRepository(Product) private productsRepository: Repository<Product>
+    @InjectRepository(Product)
+    private productsRepository: MongoRepository<Product>
   ) {}
 
   async findAll() {
     return this.productsRepository.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
+    const objectId = ObjectId(id);
     const foundedProduct = await this.productsRepository.findOne({
-      where: { id },
+      where: { _id: objectId },
     });
-    if (!foundedProduct) {
-      throw new NotFoundException('Product not found');
-    }
     return foundedProduct;
   }
 
@@ -37,11 +37,12 @@ export class ProductsService {
     if (existingProduct) {
       throw new ConflictException('Product with this name already exists');
     }
-    const newProduct = await this.productsRepository.create(createProductDto);
+    const newProduct = this.productsRepository.create(createProductDto);
     return this.productsRepository.save(newProduct);
   }
 
-  async update(id: number, updateProductDto: UpdateProductDto) {
+  async update(id: string, updateProductDto: UpdateProductDto) {
+    const objectId = ObjectId(id);
     await this.findOne(id);
     if (!Object.keys(updateProductDto).length) {
       throw new NotFoundException(
@@ -55,17 +56,26 @@ export class ProductsService {
       if (existingProduct) {
         throw new ConflictException('Product with this name already exists');
       }
-      return this.productsRepository.update({ id }, { ...updateProductDto });
+      return this.productsRepository.update(
+        { _id: objectId },
+        { ...updateProductDto }
+      );
     }
-    return this.productsRepository.update({ id }, { ...updateProductDto });
+    return this.productsRepository.update(
+      { _id: objectId },
+      { ...updateProductDto }
+    );
   }
 
   async remove(id: string) {
     if (id === 'all') {
       return this.productsRepository.delete({});
     } else {
-      const productToRemove = await this.findOne(+id);
-      return this.productsRepository.remove(productToRemove);
+      const productToRemove = await this.findOne(id);
+      if (productToRemove) {
+        return this.productsRepository.remove(productToRemove);
+      }
+      throw new NotFoundException('No product found with this id');
     }
   }
 }

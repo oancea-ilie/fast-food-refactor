@@ -10,8 +10,6 @@ const Products = () => {
 
   const { products } = useProduct();
 
-  console.log(products);
-
   const [activeFilter, setActiveFilter] = useState<string>(
     ProductFilters[0].name
   );

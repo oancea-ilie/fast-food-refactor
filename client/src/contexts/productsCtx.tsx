@@ -13,6 +13,16 @@ import { ProductApi } from '../api/productApi';
 
 export const ProductsContext = createContext<ProductsContextI | null>(null);
 
+const mockedProduct: ServerProduct = {
+  id: 1,
+  createdAt: new Date(),
+  description: 'des',
+  image: 'https://xsgames.co/randomusers/avatar.php?g=male',
+  name: 'Prod1',
+  price: 10,
+  stock: 3,
+};
+
 export const ProductsProvider = ({ children }: Children) => {
   const productApi = useMemo(() => new ProductApi(), []);
 
@@ -25,12 +35,11 @@ export const ProductsProvider = ({ children }: Children) => {
   const [products, setProducts] = useState<ServerProduct[]>([]);
 
   const getProducts = useCallback(async () => {
-    6;
     setIsLoading(true);
     try {
-      const fetchedProducts = await productApi.findAll();
+      // const fetchedProducts = await productApi.findAll();
 
-      setProducts(fetchedProducts);
+      setProducts([mockedProduct]);
     } catch (e) {
       setError(true);
       throw e;
