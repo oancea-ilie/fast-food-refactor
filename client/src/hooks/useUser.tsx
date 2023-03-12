@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import { UserContext } from '../contexts/UserCtx';
 import { User } from '../interfaces/User';
 
-const mockedUser: User = {
-  id: 30,
-  token: 'GEAQ!EZ22',
-  name: 'Oancea Ilie',
-  email: 'oancea@gmail.com',
-  image: 'https://xsgames.co/randomusers/avatar.php?g=male',
-};
+// const mockedUser: User = {
+//   id: 30,
+//   token: 'GEAQ!EZ22',
+//   name: 'Oancea Ilie',
+//   email: 'oancea@gmail.com',
+//   image: 'https://xsgames.co/randomusers/avatar.php?g=male',
+// };
 
 const useUser = () => {
   const userCtx = useContext(UserContext);

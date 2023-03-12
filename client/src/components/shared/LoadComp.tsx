@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const LoadComp = () => {
-  const [state, setState] = useState<boolean>(false);
-
-  return <div>Loading..</div>;
+  return (
+    <div className="flex items-center justify-center my-20">
+      <ThreeCircles height="150" width="150" color="#a41a13" />
+    </div>
+  );
 };
 export default LoadComp;

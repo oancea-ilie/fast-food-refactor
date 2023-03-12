@@ -13,8 +13,6 @@ const Header = () => {
 
   const { user, logOut } = useUser();
 
-  console.log('Header user ->', user);
-
   const size = useWindowSize();
 
   const location = useLocation();

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ProductFilters } from '../../constants/constants';
-import { useProduct } from '../../contexts/ProductsCtx';
+import { ProductFilters } from '../../constants/productFilters';
+import useProduct from '../../hooks/useProduct';
 import ProductCard from '../home/ProductCard';
 
 const MenuProducts = () => {
@@ -38,7 +38,7 @@ const MenuProducts = () => {
       </div>
       <div className="--products-body max-w-6xl mx-auto grid grid-cols-4 gap-4">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
     </section>

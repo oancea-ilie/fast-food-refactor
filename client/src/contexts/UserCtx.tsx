@@ -1,11 +1,13 @@
 import { createContext, useMemo, useState } from 'react';
 import { User } from '../interfaces/User';
-import { UserContextI } from '../interfaces/UserCtx';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
-
+type UserContextI = {
+  user: User | undefined;
+  setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+};
 export const UserContext = createContext<UserContextI | null>(null);
 
 export const UserProvider = ({ children }: Props) => {

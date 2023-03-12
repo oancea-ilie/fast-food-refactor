@@ -1,16 +1,16 @@
 import Btn from '../shared/Btn';
 import { BsFillCartPlusFill } from 'react-icons/bs';
-import { ServerProduct } from '../../interfaces/Product';
-
+import { Product } from '../../interfaces/Product';
+import Burger from '../../../../products/product-burger-1.png';
 interface Props {
-  product: ServerProduct;
+  product: Product;
 }
 
 const ProductCard = ({ product }: Props) => {
   return (
     <div className="card rounded-md shadow-md">
       <img
-        src={product.image}
+        src={Burger}
         className="max-w-full h-[200px] object-cover w-full"
         alt="Shoes"
       />

@@ -1,5 +1,5 @@
-export interface ServerProduct {
-  id: number;
+export interface Product {
+  _id: number;
   name: string;
   description: string;
   price: number;
@@ -8,4 +8,4 @@ export interface ServerProduct {
   createdAt: Date;
 }
 
-export type Product = Omit<ServerProduct, 'id' | 'createdAt'>;
+export type ProductAttributes = Omit<Product, 'id' | 'createdAt'>;

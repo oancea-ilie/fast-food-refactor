@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ProductFilters } from '../../constants/constants';
-import { useProduct } from '../../contexts/ProductsCtx';
+import { ProductFilters } from '../../constants/productFilters';
+import useProduct from '../../hooks/useProduct';
 import Btn from '../shared/Btn';
+import StateWrapper from '../shared/StateWrapper';
 import ProductCard from './ProductCard';
 
 const Products = () => {
   const navigate = useNavigate();
 
-  const { products } = useProduct();
+  const { products, error, isLoading } = useProduct();
 
   const [activeFilter, setActiveFilter] = useState<string>(
     ProductFilters[0].name
@@ -29,10 +30,10 @@ const Products = () => {
         <div className="filters flex gap-10 justify-center">
           {ProductFilters.map((filter) => (
             <button
+              key={filter.name}
               className={`bg-transparent text-black text-2xl font-medium hover:bg-transparent hover:text-red-l ${
                 filter.name === activeFilter ? 'text-red-l' : ''
               }`}
-              key={filter.name}
               onClick={() => handleFilter(filter)}
             >
               {filter.name}
@@ -40,11 +41,17 @@ const Products = () => {
           ))}
         </div>
       </div>
-      <div className="--products-body max-w-6xl mx-auto grid grid-cols-4 gap-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      <StateWrapper
+        error={error}
+        isLoading={isLoading}
+        length={products.length}
+      >
+        <div className="--products-body max-w-6xl mx-auto grid grid-cols-4 gap-4">
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+      </StateWrapper>
       <Btn
         variant="red"
         className="mt-8 py-5 px-24 flex justify-center mx-auto shadow-md"

@@ -1,140 +1,62 @@
 import {
   createContext,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useState,
 } from 'react';
-import { ProductsContextI } from '../interfaces/ProductCtx';
-import { Children } from '../interfaces/SharedInterfaces';
-import { Product, ServerProduct } from '../interfaces/Product';
+import { Children, NestError } from '../interfaces/SharedInterfaces';
+import { Product } from '../interfaces/Product';
 import { ProductApi } from '../api/productApi';
 
+type ProductsContextI = {
+  products: Product[];
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  fetchProducts: () => Promise<void>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  error: boolean;
+  setError: React.Dispatch<React.SetStateAction<boolean>>;
+};
 export const ProductsContext = createContext<ProductsContextI | null>(null);
 
-const mockedProduct: ServerProduct = {
-  id: 1,
-  createdAt: new Date(),
-  description: 'des',
-  image: 'https://xsgames.co/randomusers/avatar.php?g=male',
-  name: 'Prod1',
-  price: 10,
-  stock: 3,
-};
-
 export const ProductsProvider = ({ children }: Children) => {
+  const [products, setProducts] = useState<Product[]>([]);
+
   const productApi = useMemo(() => new ProductApi(), []);
-
-  console.log('Context rendered!');
-
-  const [error, setError] = useState<boolean>(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [products, setProducts] = useState<ServerProduct[]>([]);
+  const [error, setError] = useState<boolean>(false);
 
-  const getProducts = useCallback(async () => {
-    setIsLoading(true);
+  const fetchProducts = useCallback(async () => {
     try {
-      // const fetchedProducts = await productApi.findAll();
-
-      setProducts([mockedProduct]);
-    } catch (e) {
+      setIsLoading(true);
+      const fetchedProducts = await productApi.findAll();
+      setProducts(fetchedProducts);
+    } catch (error) {
       setError(true);
-      throw e;
+      throw Error((error as NestError).message);
     } finally {
       setIsLoading(false);
     }
   }, [productApi]);
 
-  const addProduct = useCallback(
-    async (newProduct: Product) => {
-      try {
-        setIsLoading(true);
-        const createdProduct = await productApi.create(newProduct);
-
-        setProducts((products) => [createdProduct, ...products]);
-      } catch (e) {
-        setError(true);
-        throw e;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [productApi]
-  );
-
-  const updateProduct = useCallback(
-    async (id: number, updatedProduct: Product) => {
-      try {
-        setIsLoading(true);
-        const serverUpdatedProduct = await productApi.update(
-          id,
-          updatedProduct
-        );
-        setProducts((products) =>
-          products.map((product) =>
-            product.id === serverUpdatedProduct.id
-              ? serverUpdatedProduct
-              : product
-          )
-        );
-      } catch (e) {
-        setError(true);
-        throw e;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [productApi]
-  );
-
-  const deleteProduct = useCallback(
-    async (id: number) => {
-      try {
-        setIsLoading(true);
-        const serverDeletedProduct = await productApi.delete(id);
-
-        setProducts((products) =>
-          products.filter((p) => p.id === serverDeletedProduct.id)
-        );
-      } catch (e) {
-        setError(true);
-        throw e;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [productApi]
-  );
-
   useEffect(() => {
-    getProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchProducts();
+  }, [fetchProducts]);
 
   const values = useMemo(
     () => ({
       products,
-      error,
+      setProducts,
+      fetchProducts,
       isLoading,
-      methods: {
-        addProduct,
-        updateProduct,
-        getProducts,
-        deleteProduct,
-      },
+      error,
+      setIsLoading,
+      setError,
     }),
-    [
-      products,
-      error,
-      isLoading,
-      addProduct,
-      updateProduct,
-      getProducts,
-      deleteProduct,
-    ]
+    [error, fetchProducts, isLoading, products]
   );
 
   return (
@@ -142,12 +64,4 @@ export const ProductsProvider = ({ children }: Children) => {
       {children}
     </ProductsContext.Provider>
   );
-};
-
-export const useProduct = () => {
-  const context = useContext(ProductsContext);
-  if (!context) {
-    throw new Error('useProducts must be used inside the Products Provider');
-  }
-  return context;
 };
